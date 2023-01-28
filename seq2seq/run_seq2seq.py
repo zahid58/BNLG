@@ -569,7 +569,8 @@ def main():
                 4)
         }
 
-    metric_fn = calculate_rouge if data_args.evaluation_metric == "rouge" else calculate_bleu
+    # metric_fn = calculate_rouge if data_args.evaluation_metric == "rouge" else calculate_bleu
+    metric_fn = calculate_bleu
 
     def compute_metrics(eval_preds):
         preds, labels = eval_preds
@@ -596,7 +597,8 @@ def main():
         eval_dataset=eval_dataset if training_args.do_eval else None,
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=compute_metrics if training_args.predict_with_generate else None,
+        # compute_metrics=compute_metrics if training_args.predict_with_generate else None,
+        compute_metrics = compute_metrics
     )
 
     # Training
